@@ -1,0 +1,8 @@
+.LabelForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.NamesForm{
+    padding-bottom: 5px;
+}

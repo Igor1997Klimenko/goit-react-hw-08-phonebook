@@ -1,0 +1,28 @@
+.blockform{
+    display: flex;
+    flex-direction: column;
+}
+
+.LabelForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.NamesForm{
+    padding-bottom: 5px;
+}
+
+.ButtonsContact{
+    border: none;
+    background: white;
+    margin-top: 10px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.ButtonsContact:hover{
+    background: rgb(238, 238, 238);
+    transition: 0.5s;
+}

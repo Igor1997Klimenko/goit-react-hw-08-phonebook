@@ -1,0 +1,22 @@
+.ButtonsContact{
+    border: none;
+    background: white;
+    padding: 3px 8px;
+    border-radius: 2px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.ButtonsContact:hover{
+    background: rgb(238, 238, 238);
+    transition: 0.5s;
+}
+
+.NumberContacts{
+    padding-right: 10px;
+}
+
+.DeleteContact{
+    color: rgb(255, 160, 160);
+
+}
