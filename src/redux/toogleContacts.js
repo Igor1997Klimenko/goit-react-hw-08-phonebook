@@ -7,8 +7,9 @@ export const toogleContacts = createSlice({
   reducers: {
     contactsFilter: (state, { payload }) => {
       state.filter = payload;      
-    }    
+    },
   },
+  
 });
 
 export const { contactsFilter } = toogleContacts.actions;
