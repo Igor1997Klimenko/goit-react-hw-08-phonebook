@@ -4,7 +4,6 @@ import ContactList from '../Component/ContactList/ContactList';
 import contactsOperations from '../redux/private/contacts-operations';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { ContainerContacts } from './styles.component';
 
 const ContactsBook = () => {
     const dispatch = useDispatch();
@@ -14,13 +13,13 @@ const ContactsBook = () => {
     }, [dispatch]);
 
     return (
-        <ContainerContacts>
+        <>
         <h1>Phonebook</h1>
         <ContactForm/>
         <h2>Contacts</h2>
             <Filter/>
             <ContactList />
-        </ContainerContacts>
+        </>
     )
 }
 

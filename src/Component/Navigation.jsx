@@ -1,13 +1,17 @@
-import { Link } from "react-router-dom";
-import { LinkNav } from "./UserMenu/styles.component";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import authSelectors from "redux/auth/auth-selector";
 
 const Navigation = () => {
+    const isLoggedIn = useSelector(authSelectors.getIsLoggedIn)
     return (
         <>
-            <LinkNav><Link to='/'>Home</Link></LinkNav>
-            <LinkNav><Link to='Contacts'>Phonebook</Link></LinkNav>
+            <NavLink to='/'>Home</NavLink>
+            {isLoggedIn && (
+                <NavLink to='contacts'>Phonebook</NavLink>
+            )}
         </>
-    )
-}
+    );
+};
 
 export default Navigation;
