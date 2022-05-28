@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import authOperations from "redux/auth/auth-operations";
+import authOperations from "../redux/auth/auth-operations";
+import { FormData, FormLabel } from "./styles.component";
 
 const Registration = () => {
     const [name, setName] = useState('');
@@ -34,9 +35,9 @@ const handleSubmit = e => {
     }; 
    
     return(
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>
+        <FormData onSubmit={handleSubmit}>
+            
+                <FormLabel>
                     Name
                     <input
                     type="text"
@@ -44,10 +45,10 @@ const handleSubmit = e => {
                     value={name}
                     onChange={handleInputChange}
                     />
-                </label>
+                </FormLabel>
                 
 
-                <label>
+                <FormLabel>
                     Email
                     <input
                     type="text"
@@ -55,9 +56,9 @@ const handleSubmit = e => {
                     value={email}
                     onChange={handleInputChange}
                     />
-                </label>
+                </FormLabel>
                 
-                <label>
+                <FormLabel>
                     Password
                     <input
                     type="password"
@@ -65,12 +66,12 @@ const handleSubmit = e => {
                     value={password}
                     onChange={handleInputChange}
                 />
-                </label>
+                </FormLabel>
                 
                 <button type="submit">Login</button>
-            </div>
             
-        </form>
+            
+        </FormData>
     )
 }
 

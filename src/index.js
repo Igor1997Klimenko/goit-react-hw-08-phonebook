@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 
-
 const root = createRoot(document.getElementById('root')); 
 
 root.render(
@@ -20,4 +19,3 @@ root.render(
     </Provider>
   </React.StrictMode>,
 )
-

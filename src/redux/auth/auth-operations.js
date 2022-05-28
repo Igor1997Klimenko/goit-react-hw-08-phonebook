@@ -15,56 +15,54 @@ const register = createAsyncThunk('auth/register', async credentials => {
     try {
       const { data } = await axios.post('/users/signup', credentials);
       token.set(data.token);
-      return data;  
-    } catch (error) {  
-      
+        return data;
+    } catch (error) {
+        throw new Error(error.message);
   };
 });
 
 const logIn = createAsyncThunk('auth/login', async credentials => {
-  try {
-    const { data } = await axios.post('/users/login', credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-
+    try {
+      const { data } = await axios.post('/users/login', credentials);
+      token.set(data.token)
+        return data;
+    } catch (error) {
+      throw new Error(error.message);  
   };
 });
-  
-  const logOut = createAsyncThunk('auth/logout', async () => {
+
+const logOut = createAsyncThunk('auth/logout', async () => {
     try {
       await axios.post('/users/logout');
       token.unset();
     } catch (error) {
-        
+        throw new Error(error.message);
     };
-  });
+});
 
-const fetchCurrentContact = createAsyncThunk(
-  'auth/refresh',
-  async (_, thunkApi) => {
-    const state = thunkApi.getState();
-    const persistToken = state.auth.token;
-
-    if (persistToken === null) {
-      return thunkApi.rejectWithValue();
+const fetchCurrentUser = createAsyncThunk('auth/refresh',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue();
     };
-
-    token.set(persistToken);
+    token.set(persistedToken);
     try {
       const { data } = await axios.get('/users/current');
       return data;
     } catch (error) {
-      
+      throw new Error(error.message);
     };
   },
 );
 
-  const authOperations = {
-    register,
-    logIn,
-    logOut,
-    fetchCurrentContact,
-  };
+const authOperations = {
+  register,
+  logIn,
+  logOut,
+  fetchCurrentUser,
+};
 
-  export default authOperations;
+export default authOperations;
+

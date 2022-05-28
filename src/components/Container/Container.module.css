@@ -1,8 +1,0 @@
-.Container{
-    display: flex;
-    flex-direction: column;
-    width: max-content;
-    margin: auto;
-    background: aqua;
-    padding: 0 20px;
-}

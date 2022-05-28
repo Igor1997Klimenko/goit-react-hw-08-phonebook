@@ -1,17 +1,15 @@
-import { useState, memo } from 'react';
-import styles from './ContactForm.module.css'
+import {useState,memo } from 'react'
+import styles from '../ContactForm/ContactForm.module.css'
 import { nanoid } from '@reduxjs/toolkit';
-import { useAddContactMutation, useGetContactsQuery } from '../../redux/contacts-api'
+import { useAddContactMutation, useGetContactsQuery } from '../../redux/contacts-api';
 import { BallTriangle } from 'react-loader-spinner';
 import toast, { Toaster } from 'react-hot-toast';
-
 
 const ContactForm = () => {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const { data: contacts } = useGetContactsQuery();
-    const [addContact, { isLoading }] = useAddContactMutation();
-    
+    const [addContact, {isLoading}] = useAddContactMutation();
   
 const handleInputChange = e => {
         const { name, value } = e.target;

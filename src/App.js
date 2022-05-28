@@ -1,31 +1,53 @@
 import { Routes, Route } from 'react-router-dom';
-// import Container from 'components/Container/Container';
-import Registration from 'pages/Registration';
-import Login from 'pages/Login';
-import ContactsBook from 'pages/ContactsBooks';
-import Home from 'pages/Home';
-import AppBar from './components/AppBar';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import authOperations from 'redux/auth/auth-operations';
+import { lazy, Suspense, useEffect } from 'react';
+import Container from './Component/Container/Container';
+import AppBar from './Component/AppBar';
+import authOperations from './redux/auth/auth-operations';
+import PrivateRoute from 'Component/PrivateRoute';
+import PublicRoute from 'Component/PublicRoute';
+
+const HomePages = lazy(() => import('./pages/Home'));
+const RegistrationPages = lazy(() => import('./pages/Registration'));
+const LoginPages = lazy(() => import('./pages/Login'));
+const ContactsPages = lazy(() => import('./pages/ContactsBooks'));
 
 const App = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(authOperations.fetchCurrentContact())
-  }, [dispatch])
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
 
   return (
-    <>
-      <AppBar/>
+    <Container>
+      <AppBar />
+        <Suspense fallback={<p>Загружаем...</p>}>
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='register' element={<Registration />} />
-          <Route path='login' element={<Login />} />
-          <Route path='contacts' element={<ContactsBook />}/>
-        </Routes>
-    </>
+          
+          <Route path='/' element={
+            <PublicRoute>
+              <HomePages />
+            </PublicRoute>} />
+          
+          <Route path='register' element={
+            <PublicRoute>
+              <RegistrationPages />
+            </PublicRoute>} />
+          
+          <Route path='login' element={
+            <PublicRoute>
+              <LoginPages />
+            </PublicRoute>} />
+
+          <Route path='contacts' element={
+            <PrivateRoute>
+              <ContactsPages/>
+            </PrivateRoute>} />
+          
+          </Routes>
+        </Suspense>  
+    </Container>
    );
  }
 
