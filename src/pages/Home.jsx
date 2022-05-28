@@ -1,8 +1,10 @@
+import s from '../pages/Pages.module.css'
+
 const Home = () => {
     return (
-        <>
-        <h3>Welcome to your personal phone book</h3>
-        </>
+        <div className={s.HomePhone}>
+        <h3 className={s.PersonWelcom}>Welcome to your personal phone book</h3>
+        </div>
     )
 }
 

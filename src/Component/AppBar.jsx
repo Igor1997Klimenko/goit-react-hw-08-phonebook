@@ -8,14 +8,8 @@ const AppBar = () => {
     const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
     return (
         <div>
-            
-                <Navigation />
-            
-            
-            {isLoggedIn ? (
-                    <UserMenu />
-                ) : (
-                    <AuthNav />)}
+            <Navigation />
+            {isLoggedIn ? (<UserMenu />) : (<AuthNav />)}
         </div>
     )
 }

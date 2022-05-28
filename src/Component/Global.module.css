@@ -1,0 +1,9 @@
+body{
+    margin: 0;
+}
+.LinkHome{
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 10px;
+}

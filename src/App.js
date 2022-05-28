@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { lazy, Suspense, useEffect } from 'react';
 import Container from './Component/Container/Container';
-import AppBar from './Component/AppBar';
+// import AppBar from './Component/AppBar';
 import authOperations from './redux/auth/auth-operations';
 import PrivateRoute from 'Component/PrivateRoute';
 import PublicRoute from 'Component/PublicRoute';
@@ -27,10 +27,10 @@ const App = () => {
   return (
     !isFetchingCurrentUser ? (
       <>
-      {/* <Header/> */}
+      
       <Container>
-        
-        <AppBar />
+        <Header/>
+        {/* <AppBar /> */}
         <Suspense fallback={<Plane ariaLabel="loading-indicator" />}>
           <Routes>
           
