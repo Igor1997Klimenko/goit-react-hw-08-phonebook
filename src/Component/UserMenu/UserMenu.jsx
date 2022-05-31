@@ -4,6 +4,7 @@ import authOperations from "../../redux/auth/auth-operations";
 import s from './UserMenu.module.css';
 import { Button } from "@mui/material";
 import Avatar from '@mui/material/Avatar';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const UserMenu = () => {
     const dispatch = useDispatch();
@@ -15,19 +16,21 @@ const UserMenu = () => {
     return (
         <div className={s.Logout}>
             <div className={s.User}><Avatar
+                className={s.Avatar}
                 src="/broken-image.jpg"
-                sx={{ width: 26, height: 26 }}
+                sx={{ width: 26, height: 26, background: '#44b1ff', }}
             />
             <span className={s.LogoutWel}> {name}</span>
             </div>
             
 
             <Button
+                className={s.ButtonOut}
                 type='button'
                 variant="contained"
                 onClick={handleExitsLogOut}
             >
-                goOut
+                <LogoutIcon/>GoOut
             </Button>
         </div>
     )

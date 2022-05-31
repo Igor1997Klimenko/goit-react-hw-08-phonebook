@@ -16,7 +16,7 @@ const Header = () => {
                     {isLoggedIn ? (<UserMenu />) : (<AuthNav />)}
                 </Typography>
             </Toolbar>
-        </AppBar>
+        </AppBar>        
     );
 };
 

@@ -1,6 +1,4 @@
-body{
-    margin: 0;
-}
+
 
 .blockform{
     display: flex;
@@ -10,6 +8,7 @@ body{
 .LabelForm{
     display: flex;
     flex-direction: column;
+    height: 20px;
 }
 
 .NamesForm{
@@ -29,4 +28,8 @@ body{
 .ButtonsContact:hover{
     background: rgb(238, 238, 238);
     transition: 0.5s;
+}
+
+.InputForm{
+    margin-bottom: 20px;
 }

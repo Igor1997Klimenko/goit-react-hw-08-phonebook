@@ -7,7 +7,11 @@ export const toogleContacts = createSlice({
   reducers: {
     contactsFilter: (state, { payload }) => {
       state.filter = payload;      
-    }    
+    }, 
+    
+    editTodo: (state, { payload }) => {
+      
+    }
   },
 });
 

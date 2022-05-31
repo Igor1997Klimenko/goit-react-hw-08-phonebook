@@ -1,6 +1,7 @@
 import styles from './Filter.module.css';
 import { contactsFilter } from '../../redux/toogleContacts';
 import { useDispatch } from 'react-redux';
+import Input from '@mui/material/Input';
 
 const Filter = () => {
     const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const Filter = () => {
     return(
         <label className={styles.LabelForm}>
             <span className={styles.NamesForm}>Find contacts by name</span>
-            <input
+            <Input className={styles.InputName}
                 type="text"
                 name="filter"
                 placeholder='filter contacts'

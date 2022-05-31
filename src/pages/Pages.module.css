@@ -5,9 +5,78 @@
     transform: translate(-50%, -50%);
 }
 
+
 .PersonWelcom{
 text-transform: uppercase;
     font-size: 30px;
     font-family: cursive;
-    color: #ffffff;
+    color: #001fb5;
+}
+
+.Forms{
+    border-radius: 5px;
+    padding: 20px;
+    background: #e7fffe;
+    box-shadow: 0 0 40px rgba(0, 0, 0, .1) inset;
+}
+
+.PhoneBook{
+    text-align: center;
+    font-family: cursive;
+    color: #0439f9;
+    margin-top: 0;
+}
+
+.Contacts{
+    color: #2970af;
+    font-family: cursive;
+}
+
+.FormRegister{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    background: #dcf9ff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 5px rgb(221 221 221);
+}
+
+.InputRegister{
+    margin-bottom: 10px;
+}
+
+.InputEidth{
+    width: 100%;
+    background: #e9f5f9;
+}
+
+.RegisterText{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #0439f9;
+    font-family: sans-serif;
+}
+
+.TextProject{
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+.BackLogin{
+    font-size: 16px;
+    font-weight: 600;
+    color: #0439f9;
+}
+
+.ButtRegis{
+    margin-top: 20px;
+}
+
+.ErrorType{
+    color: red;
+    text-shadow: 1px 1px 2px white, 0px 1px 2px red;
 }

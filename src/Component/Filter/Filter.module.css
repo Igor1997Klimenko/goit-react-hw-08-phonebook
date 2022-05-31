@@ -4,5 +4,15 @@
 }
 
 .NamesForm{
-    padding-bottom: 5px;
+    padding-bottom: 15px;
+    color: blue;
+    font-family: cursive;
+}
+
+.InputName{
+    outline: none;
+}
+
+.InputName::placeholder{
+    color: #1717ff38;
 }

@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 const ContactList = () => {
     const { data } = useGetContactsQuery();
-    const filterValue = useSelector((state) => state.contacts.filter)
+    const filterValue = useSelector((state) => state.contacts.filter);
 
     return(
         <ul className={s.ContactList}>
