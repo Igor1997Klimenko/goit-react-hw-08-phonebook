@@ -9,6 +9,7 @@ width: -webkit-fill-available;
     background: #1976d2;
     color: #ffffff;
     padding: 10px 30px;
+    box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
 }
 
 .Github{
@@ -33,6 +34,7 @@ width: -webkit-fill-available;
     height: 70px;
     cursor: pointer;
     z-index: 99990;
+    color: #383838;
 }
 
 @media screen and (max-width: 768px){
