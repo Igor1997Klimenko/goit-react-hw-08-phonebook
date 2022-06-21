@@ -18,8 +18,18 @@ width: -webkit-fill-available;
     cursor: pointer;
 }
 
+.Github:first-child{
+    margin-right: 10px;
+}
+
 .Github:hover{
     color: #a7a7a7;
+}
+
+@media screen and (min-width: 767px){
+    .GitHubIcon{
+        display: none;
+    }
 }
 
 .FooterText{
