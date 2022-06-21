@@ -43,7 +43,17 @@ const handleInputChange = e => {
 const handleSubmit = e => {
     e.preventDefault();
     if(contactExits()){
-        alert(`${name} is already in contacts`)
+        toast.success(`${name} is already in contacts`, {
+            style: {
+                border: '1px solid red',
+                padding: '16px',
+                color: 'red',
+            },
+            iconTheme: {
+                primary: 'red',
+                secondary: '#FFFAEE',
+            },
+        });
         return;
     }
     addContact({ name, phone, id: nanoid() });
@@ -94,7 +104,7 @@ const handleSubmit = e => {
                 variant="outlined">
                 {isLoading ? <BallTriangle color="#00BFFF" height={20} width={20} /> : 'Add contact'}
             </Button>
-            <Toaster position="top-right"/>
+            <Toaster position="top-center"/>
         </form>
     );
   }

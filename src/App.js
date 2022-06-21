@@ -26,10 +26,10 @@ const App = () => {
 
   return (
     !isFetchingCurrentUser ? (
-      <>
-      
+      <div>
+      <Header/>
       <Container>
-        <Header/>
+        
         {/* <AppBar /> */}
         <Suspense fallback={<Plane ariaLabel="loading-indicator" />}>
           <Routes>
@@ -57,7 +57,7 @@ const App = () => {
           </Routes>
         </Suspense>
         </Container>
-        </>
+        </div>
     ) : (
       <h1>Показываем приложение Phonebook</h1>)
   );

@@ -54,6 +54,7 @@ const fetchCurrentUser = createAsyncThunk('auth/refresh',
     } catch (error) {
       throw new Error(error.message);
     };
+    
   },
 );
 
@@ -65,4 +66,3 @@ const authOperations = {
 };
 
 export default authOperations;
-

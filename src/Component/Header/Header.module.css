@@ -1,9 +1,28 @@
 .typoGraf{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
 }
 
-.BarNav{
-    
+
+@media screen and (max-width: 767px){
+    .MegaMenu{
+        display: none;
+    }
+}
+
+
+@media screen and (min-width: 768px){
+    .Menu{
+        display: none;
+    }
+}
+
+.ColorIcon{
+    color: #ffffff;
+}
+
+.stylerMenu{
+    margin-top: 30px;
 }

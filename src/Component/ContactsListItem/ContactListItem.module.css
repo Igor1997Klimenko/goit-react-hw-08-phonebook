@@ -7,7 +7,7 @@
 .NumberContacts{
     padding-right: 10px;
     color: #076e5b;
-    font-family: cursive;
+    font-family: sans-serif;
 }
 
 .DeleteContact{
@@ -91,9 +91,10 @@ display: flex;
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgb(44 73 139 / 56%);
+    background: rgb(26 26 26 / 79%);
     height: 100%;
     width: 100%;
+    z-index: 9999;
 }
 
 .InputModal{
@@ -107,4 +108,23 @@ display: flex;
 
 .InputModal:first-child{
     margin-bottom: 10px;
+}
+
+.editModal{
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    background: transparent;
+    border: none;
+    color: rgb(253, 66, 66);
+    cursor: pointer;
+}
+
+.editModal:hover{
+    color: red;
+    transition: 0.3s;
+}
+
+.EditDelete{
+    display: flex;
 }

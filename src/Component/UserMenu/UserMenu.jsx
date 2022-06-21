@@ -32,7 +32,7 @@ const UserMenu = () => {
             >
                 <LogoutIcon/>GoOut
             </Button>
-        </div>
+            </div>
     )
 }
 

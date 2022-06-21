@@ -2,13 +2,25 @@
     display: flex;
     align-items: center;
 }
+
+@media screen and (max-width: 768px){
+  .User{
+    margin: 10px;
+}
+}
 .Logout{
     display: flex;
     align-items: center;
 }
 
+@media screen and (max-width: 768px){
+  .Logout{
+    flex-direction: column;
+}
+}
+
 .Avatar{
-  background: red;
+  background: #00dfdf !important;
 }
 
 .LogoutWel{

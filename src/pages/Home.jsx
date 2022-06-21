@@ -1,4 +1,4 @@
-import s from '../pages/Pages.module.css'
+import s from '../pages/Pages.module.css';
 
 const Home = () => {
     return (

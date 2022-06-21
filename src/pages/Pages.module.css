@@ -1,44 +1,54 @@
 .HomePhone{
     position: absolute;
     top: 50%;
+    width: 100%;
+    text-align: center;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 
 .PersonWelcom{
-text-transform: uppercase;
+    text-transform: uppercase;
     font-size: 30px;
-    font-family: cursive;
-    color: #001fb5;
+    font-family: sans-serif;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .Forms{
     border-radius: 5px;
     padding: 20px;
-    background: #e7fffe;
-    box-shadow: 0 0 40px rgba(0, 0, 0, .1) inset;
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    margin: 70px 20px 20px 20px;
+    background: #d3f7fff0;
+    box-shadow: 0 0 10px 5px rgb(221 221 221);
 }
 
 .PhoneBook{
     text-align: center;
-    font-family: cursive;
+    font-family: sans-serif;
     color: #0439f9;
     margin-top: 0;
 }
 
 .Contacts{
     color: #2970af;
-    font-family: cursive;
+    font-family: sans-serif;
 }
 
 .FormRegister{
     padding: 30px;
     display: flex;
     flex-direction: column;
-    background: #dcf9ff;
+    background: #dcf9fff0;
     border-radius: 5px;
     box-shadow: 0 0 10px 5px rgb(221 221 221);
+    margin: 70px 20px 20px 20px;
 }
 
 .InputRegister{
@@ -78,5 +88,6 @@ text-transform: uppercase;
 
 .ErrorType{
     color: red;
-    text-shadow: 1px 1px 2px white, 0px 1px 2px red;
+    text-shadow: 1px 1px 1px white, 0px 1px 1px red;
+    font-size: 14px;
 }

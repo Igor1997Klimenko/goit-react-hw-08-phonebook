@@ -1,80 +1,110 @@
 import PropTypes from 'prop-types'; 
 import styles from './ContactListItem.module.css';
-import { useDeleteContactsMutation, useGetContactsQuery } from '../../redux/contacts-api';
+import {
+    useDeleteContactsMutation,
+    useGetContactsQuery,
+    useEditPostContactMutation
+} from '../../redux/contacts-api';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AutoDeleteIcon from '@mui/icons-material/AutoDelete';
 import EditIcon from '@mui/icons-material/Edit';
 import 'react-edit-text/dist/index.css';
-import { useCallback, useState } from 'react';
+import { useEffect, useState } from 'react';
 import DoneIcon from '@mui/icons-material/Done';
+import toast from 'react-hot-toast';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 const ContactListItem = ({ id, name, phone }) => {
+    const [editContact] = useEditPostContactMutation();
     const [deleteContact, { isLoading: isDeleting }] = useDeleteContactsMutation();
     const { data } = useGetContactsQuery();
-    const [notes, setNotes] = useState(data,[]);
     const [contactIndex, setContactIndex] = useState(null);
-    const [editText, setEditText] = useState('');
     const [editing, setEditing] = useState(false);
-    
-    const handleEditContact = useCallback((index) => {
+    const [formValue, setFormValue] = useState(data);
+
+    const handleEditContact = (index) => {
         setContactIndex(index)
-        setEditing(true)
-    }, [])
+    }
 
-    const handleSaveContact = useCallback((id) => {
-        setEditing(false)
+    const handleExitContact = () => {
         setContactIndex(null)
-        const oldContact = [...notes]
-        console.log('first', oldContact)
+    }
 
-        const newContact = oldContact.map((contact) => {
-            if (contact.id === id) {
-                if (editText !== '') {
-                    contact.name = editText;
-                } else {
-                    return contact;
-                }
+    const handleSubmitSaveContact = e => {
+        e.preventDefault()
+        setContactIndex(null)
+          const contactPhone = {
+            name,
+            phone,
+            completed: false,
+            id
+          };
+        console.log('first', contactPhone)
+        editContact(contactPhone);
+    }
+
+    const handleDeleteContact = async id => {
+        await deleteContact(id)
+        toast.error('Contact delete!');
+    }
+
+    useEffect(() => {
+        if (id) {
+            setEditing(true)
+            if (data) {
             }
-            return contact;
-        })
-        setNotes(newContact)
-    }, [editText, notes])
+        } else {
+            setEditing(false)
+        }
+    }, [id, data])
 
+    
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormValue({ ...formValue, [name]: value });
+    };
     
     return(
         <>   
         <span className={styles.NumberContacts}>
             {name}: {phone}
-            </span>
+        </span>
 
             {editing && contactIndex === id ? (
                 <div className={styles.Backdroup}>
+                <form name='updateTask' onSubmit={handleSubmitSaveContact}>
                 <div className={styles.DroupContent}>
-                    <div className={styles.DefaultInput}>
+                <div className={styles.DefaultInput}>
                     <input
                         className={styles.InputModal}
                         type="text"
-                        defaultValue={name}
-                        onChange={e => setEditText(e.target.value)}
+                        defaultValue={name || ''}
+                        onChange={handleInputChange}
                             />
                             
                     <input
                         className={styles.InputModal}
                         type="text"
-                        defaultValue={phone}
-                        onChange={e => setEditText(e.target.value)}
-                    />
+                        defaultValue={phone || ''}
+                        onChange={handleInputChange}
+                            />
                     </div>
                     <button
                         className={styles.ButtonDone}
-                        onClick={() => handleSaveContact(id)}
-                        type='button'><DoneIcon className={styles.IconDone} /></button>
-                </div>
+                        type='submit'><DoneIcon className={styles.IconDone} /></button>
+                            <button
+                                type='button'
+                                onClick={handleExitContact}
+                                className={styles.editModal}
+                            ><CloseIcon/></button>     
+                    </div>
+                </form>
+                    
                 </div>
 
             ) : (
-                    <div>
+                <div className={styles.EditDelete}>
                 <button
                     onClick={() => handleEditContact(id)}
                     className={styles.EditButton}
@@ -84,7 +114,7 @@ const ContactListItem = ({ id, name, phone }) => {
             <button
                 className={styles.ButtonsContact}
                 type="button"
-                onClick={() => deleteContact(id)}>
+                onClick={() => handleDeleteContact(id)}>
                     {isDeleting ?
                         <AutoDeleteIcon className={styles.IconsRemove} /> :
                         <DeleteIcon className={styles.IconsDelete} />}

@@ -12,31 +12,33 @@ export const apiContacts = createApi({
                 url: `/contacts`,
                 method: 'GET',
             }),
-            providesTags: ['Contact'],
+                providesTags: ['Contact'],
         }),
 
         addContact: builder.mutation({
             query: newContact => ({
-                    url: '/contacts',
-                    method: 'POST',
-                    body: newContact,
+                url: '/contacts',
+                method: 'POST',
+                body: newContact,
             }),
-             invalidatesTags: ['Contact'],
+                invalidatesTags: ['Contact'],
         }),
 
         deleteContacts: builder.mutation({
-            query: id => ({
-                url: `/contacts/${id}`,
+            query: contactId => ({
+                url: `/contacts/${contactId}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: ['Contact'], 
+                invalidatesTags: ['Contact'], 
         }),
-        editContacts: builder.mutation({
-            query: id => ({
-                url: `/contacts/${id}`,
+
+         editPostContact: builder.mutation({
+            query: contactId => ({
+                url: `/contacts/${contactId.id}`,
                 method: 'PATCH',
+                body: contactId,
             }),
-            invalidatesTags: ['Contact'], 
+                invalidatesTags: ['Contact'], 
         }),
     }),
 });
@@ -44,5 +46,15 @@ export const {
     useGetContactsQuery,
     useAddContactMutation,
     useDeleteContactsMutation,
-    useEditContactsMutation
+    useEditPostContactMutation,
 } = apiContacts;
+
+// editPostContact: builder.mutation({
+//             query: ({contactId, ...rest}) => ({
+//                 url: `/contacts/${contactId}`,
+//                 method: 'PATCH',
+//                 body: rest,
+//             }),
+//                 invalidatesTags: ['Contact'], 
+//         }),
+
