@@ -3,25 +3,33 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const apiContacts = createApi({
     reducerPath: 'apiContacts',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://62727f8825fed8fcb5f54bcd.mockapi.io',
+        baseUrl: 'https://connections-api.herokuapp.com',
+        prepareHeaders: (headers, { getState }) => {
+            const token = getState().auth.token
+            if (token) {
+                headers.set('authorization', `Bearer ${token}`)
+            }
+             return headers
+        }
     }),
-    tagTypes: ['Contact'],
+    tagTypes: ['Contacts'],
     endpoints: builder => ({
         getContacts: builder.query({
-            query: () => ({
-                url: `/contacts`,
-                method: 'GET',
-            }),
-                providesTags: ['Contact'],
+            query: () => '/contacts',
+            transformResponse: res => res.sort((a,b) => b.id - a.id),
+            providesTags: (result) =>
+                result
+                ? [...result.map(({ id }) => ({ type: 'Contacts', id })), 'Contacts']
+                : ['Contacts'],
         }),
-
+    
         addContact: builder.mutation({
             query: newContact => ({
                 url: '/contacts',
                 method: 'POST',
                 body: newContact,
             }),
-                invalidatesTags: ['Contact'],
+                invalidatesTags: ['Contacts'],
         }),
 
         deleteContacts: builder.mutation({
@@ -29,16 +37,16 @@ export const apiContacts = createApi({
                 url: `/contacts/${contactId}`,
                 method: 'DELETE',
             }),
-                invalidatesTags: ['Contact'], 
+                invalidatesTags: ['Contacts'], 
         }),
 
          editPostContact: builder.mutation({
-            query: contactId => ({
-                url: `/contacts/${contactId.id}`,
+            query: ({ id, ...edit }) => ({
+                url: `/contacts/${id}`,
                 method: 'PATCH',
-                body: contactId,
+                body: edit,
             }),
-                invalidatesTags: ['Contact'], 
+                invalidatesTags: ['Contacts'], 
         }),
     }),
 });
@@ -48,13 +56,3 @@ export const {
     useDeleteContactsMutation,
     useEditPostContactMutation,
 } = apiContacts;
-
-// editPostContact: builder.mutation({
-//             query: ({contactId, ...rest}) => ({
-//                 url: `/contacts/${contactId}`,
-//                 method: 'PATCH',
-//                 body: rest,
-//             }),
-//                 invalidatesTags: ['Contact'], 
-//         }),
-

@@ -43,7 +43,7 @@ width: -webkit-fill-available;
     width: 70px;
     height: 70px;
     cursor: pointer;
-    z-index: 99990;
+    z-index: 9;
     color: #383838;
 }
 
@@ -66,7 +66,13 @@ width: -webkit-fill-available;
     -webkit-animation: zcwmini2 1.5s 0s ease-out infinite;
     -moz-animation: zcwmini2 1.5s 0s ease-out infinite;
     animation: zcwmini2 1.5s 0s ease-out infinite;
+    transition: 0.3s;
 }
+
+.CallmeMain:hover {
+background-color: rgba(0, 96, 185, 0.97);
+}
+
 .CallmeMain:before {
     content: "";
     position: absolute;

@@ -1,7 +1,7 @@
 import {useState, useEffect, memo } from 'react'
 import styles from '../ContactForm/ContactForm.module.css'
 import { nanoid } from '@reduxjs/toolkit';
-import { useAddContactMutation, useGetContactsQuery } from '../../redux/contacts-api';
+import { useAddContactMutation, useGetContactsQuery, } from '../../redux/contacts-api';
 import { BallTriangle } from 'react-loader-spinner';
 import toast, { Toaster } from 'react-hot-toast';
 import TextField from '@mui/material/TextField';
@@ -10,19 +10,18 @@ import Button from '@mui/material/Button';
 
 const ContactForm = () => {
     const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
+    const [number, setNumber] = useState('');
     const { data: contacts } = useGetContactsQuery();
     const [addContact, { isLoading }] = useAddContactMutation();
-    const [formValid, setFormvalid] = useState(false);
-    
+    const [formValid, setFormvalid] = useState(false); 
 
-            useEffect(() => {
-        if ( name === '' || phone === '') {
-            setFormvalid(true)
-        } else {
-            setFormvalid(false) 
-        }
-    }, [name, phone])
+        useEffect(() => {
+            if ( name === '' || number === '') {
+                setFormvalid(true)
+            } else {
+                setFormvalid(false) 
+            }
+        }, [name, number])
   
 const handleInputChange = e => {
         const { name, value } = e.target;
@@ -31,8 +30,8 @@ const handleInputChange = e => {
                 setName(value)
                 break;
 
-            case 'phone':
-                setPhone(value)
+            case 'number':
+                setNumber(value)
                 break;
 
             default:
@@ -56,15 +55,15 @@ const handleSubmit = e => {
         });
         return;
     }
-    addContact({ name, phone, id: nanoid() });
+    addContact({ name, number, id: nanoid() });
     setName('');
-    setPhone('');
+    setNumber('');
     toast.success('Contact added!');
     };
     
     const contactExits = () =>
         contacts.find(contact =>
-            contact.name.toUpperCase() === name.toUpperCase() || contact.phone === phone);  
+            contact.name.toUpperCase() === name.toUpperCase() || contact.number === number);  
 
     return(
         <form className={styles.forma} onSubmit={handleSubmit}>
@@ -90,11 +89,11 @@ const handleSubmit = e => {
                     label="Telephone"
                     variant="outlined"
                     type="number"
-                    name="phone"
+                    name="number"
                     pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                     title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
                     required
-                    value={phone}
+                    value={number}
                     onChange={handleInputChange}
                     />
             </div>

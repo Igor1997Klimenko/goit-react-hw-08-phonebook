@@ -11,12 +11,12 @@ const ContactList = () => {
     return(
         <ul className={s.ContactList}>
             {data &&
-                filterContacts(data, filterValue).map(({ id, name, phone }) => (
+                filterContacts(data, filterValue).map(({ id, name, number }) => (
         <li className={s.ItemContacts} key={id}>
             <ContactListItem
                 id={id}
                 name={name}
-                phone={phone}
+                number={number}
             />
         </li>          
     ))}
