@@ -29,7 +29,7 @@ const App = () => {
       <div>
       <Header/>
       <Container>  
-        <Suspense fallback={<Plane ariaLabel="loading-indicator" />}>
+          <Suspense fallback={<span style={{display: 'flex', position: 'fixed',top: '10%'}}><Plane ariaLabel="loading-indicator" /></span>}>
           <Routes>
             <Route path='/' element={
               <PublicRoute>
@@ -56,7 +56,7 @@ const App = () => {
         <Footer/>
         </div>
     ) : (
-      <h1>Показываем приложение Phonebook</h1>)
+      <h1>Идёт загрузка...</h1>)
   );
 };
 

@@ -7,7 +7,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 
 const Navigation = () => {
     const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-    const isActive = ({isActive}) => {return {color: isActive ? '#ffffff' : 'rgb(197 197 197 / 72%)'}}
+    const isActive = ({isActive}) => {return {color: isActive ? '#19c1d2' : 'rgb(0 58 86 / 72%)'}}
     return (
         <div className={s.NavAutoriz}>
             <NavLink className={s.LinkHome} style={isActive} to='/'><HomeIcon/>Home</NavLink>

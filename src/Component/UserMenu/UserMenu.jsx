@@ -6,12 +6,13 @@ import { Button } from "@mui/material";
 import Avatar from '@mui/material/Avatar';
 import LogoutIcon from '@mui/icons-material/Logout';
 
-const UserMenu = () => {
+const UserMenu = ({closeMenu}) => {
     const dispatch = useDispatch();
     const name = useSelector(authSelectors.getUsername);
 
    const handleExitsLogOut = () => {
-        dispatch(authOperations.logOut())
+       dispatch(authOperations.logOut())
+       closeMenu()
     }
     return (
         <div className={s.Logout}>

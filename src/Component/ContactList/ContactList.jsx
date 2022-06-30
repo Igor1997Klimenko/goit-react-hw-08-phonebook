@@ -1,7 +1,7 @@
 import ContactListItem from '../ContactsListItem/ContactSListItem';
 import s from './ContactList.module.css';
 import filterContacts from '../../helpers/filterContacts';
-import { useGetContactsQuery } from '../../redux/contacts-api';
+import { useGetContactsQuery } from '../../redux/contacts/contacts-api';
 import { useSelector } from 'react-redux';
 
 const ContactList = () => {

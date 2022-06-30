@@ -18,11 +18,18 @@ width: -webkit-fill-available;
     cursor: pointer;
 }
 
-.Github:first-child{
+.Github:hover{
+    color: #a7a7a7;
+}
+
+.GitHubIcon{
+    color: #ffffff;
+    transition: 0.3s;
+    cursor: pointer;
     margin-right: 10px;
 }
 
-.Github:hover{
+.GitHubIcon:hover{
     color: #a7a7a7;
 }
 

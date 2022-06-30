@@ -7,8 +7,8 @@ import authSelectors from "../../redux/auth/auth-selector";
 import s from './Header.module.css';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from "react";
+import FormatAlignRightIcon  from '@mui/icons-material/FormatAlignCenter';
 
 const Header = () => {
     const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
@@ -41,7 +41,7 @@ const Header = () => {
                     aria-expanded={open ? 'true' : undefined}
                     onClick={handleClick}
                 >
-                        <MenuIcon className={s.ColorIcon} />
+                    <FormatAlignRightIcon className={s.ColorIcon} />
                 </Button>
                     <Menu
                         className={s.stylerMenu}
@@ -60,7 +60,7 @@ const Header = () => {
                     }}
                     >
                     <Typography className={s.typoGraf}>
-                    {isLoggedIn ? (<UserMenu />) : (<AuthNav />)}
+                    {isLoggedIn ? (<UserMenu closeMenu={handleClose} />) : (<AuthNav closeMenu={handleClose} />)}
                     </Typography>
                 </Menu>
                 </div>

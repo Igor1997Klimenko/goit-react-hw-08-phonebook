@@ -2,12 +2,14 @@
     border: none;
     background: transparent;
     cursor: pointer;
+    padding: 0;
 }
 
 .NumberContacts{
     padding-right: 10px;
     color: #076e5b;
     font-family: sans-serif;
+    padding: 5px 0;
 }
 
 .DeleteContact{

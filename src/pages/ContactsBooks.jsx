@@ -1,7 +1,7 @@
 import ContactForm from '../Component/ContactForm/ContactForm';
 import Filter from '../Component/Filter/Filter';
 import ContactList from '../Component/ContactList/ContactList';
-import contactsOperations from '../redux/private/contacts-operations';
+import contactsOperations from '../redux/contacts/contacts-operations';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import s from './Pages.module.css'

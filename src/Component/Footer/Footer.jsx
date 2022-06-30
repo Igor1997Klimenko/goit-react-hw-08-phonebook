@@ -11,7 +11,7 @@ const Footer = () => {
         <div className={s.Footer}>
                 <p className={s.FooterText} >&#169;opyright Igor Vladimirovich 2022</p>
                 <div>
-                <a className={s.Github} href="tel:5554280940"><PhoneInTalkIcon className={s.GitHubIcon} /></a>
+                <a className={s.GitHubIcon} href="tel:5554280940"><PhoneInTalkIcon/></a>
                 <a className={s.Github} href="https://github.com/Igor1997Klimenko"><GitHubIcon/></a>
                 </div>
         </div>

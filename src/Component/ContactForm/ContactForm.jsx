@@ -1,7 +1,7 @@
 import {useState, useEffect, memo } from 'react'
 import styles from '../ContactForm/ContactForm.module.css'
 import { nanoid } from '@reduxjs/toolkit';
-import { useAddContactMutation, useGetContactsQuery, } from '../../redux/contacts-api';
+import { useAddContactMutation, useGetContactsQuery, } from '../../redux/contacts/contacts-api';
 import { BallTriangle } from 'react-loader-spinner';
 import toast, { Toaster } from 'react-hot-toast';
 import TextField from '@mui/material/TextField';
@@ -64,12 +64,13 @@ const handleSubmit = e => {
     const contactExits = () =>
         contacts.find(contact =>
             contact.name.toUpperCase() === name.toUpperCase() || contact.number === number);  
+    
 
     return(
         <form className={styles.forma} onSubmit={handleSubmit}>
             <div className={styles.blockform}>
                 
-                    <TextField
+                <TextField
                     className={styles.InputForm}
                     id="outlined-basic"
                     label="Name"
@@ -82,8 +83,8 @@ const handleSubmit = e => {
                     value={name}
                     onChange={handleInputChange}              
                 />
-                
-                    <TextField
+
+                <TextField
                     className={styles.InputForm}
                     id="outlined-basic"
                     label="Telephone"

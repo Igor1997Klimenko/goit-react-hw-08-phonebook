@@ -18,7 +18,8 @@ const register = createAsyncThunk('auth/register', async credentials => {
       token.set(data.token);
         return data;
     } catch (error) {
-        throw new Error(error.message);
+      alert('This user is already registered')
+      throw new Error(error.message);
   };
 });
 
@@ -28,6 +29,7 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
       token.set(data.token)
         return data;
     } catch (error) {
+      alert('There is no such user')
       throw new Error(error.message);  
   };
 });

@@ -1,7 +1,7 @@
 
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
-import { apiContacts } from './contacts-api';
+import { apiContacts } from './contacts/contacts-api';
 import { toogleContacts } from './toogleContacts';
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER, } from 'redux-persist';
 import authSlice from './auth/auth-slice';

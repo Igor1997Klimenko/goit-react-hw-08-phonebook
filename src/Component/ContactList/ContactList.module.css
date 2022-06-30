@@ -6,10 +6,10 @@
 .ItemContacts{
     display: flex;
     justify-content: space-between;
-    margin: 5px;
+    margin: 5px 0;
     align-items: center;
     border: 1px solid #c9d7ff;
     padding: 2px 5px;
     border-radius: 5px;
-        background: #dcf2ff;
+    background: #dcf2ff;
 }

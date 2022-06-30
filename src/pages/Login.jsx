@@ -5,6 +5,13 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import s from './Pages.module.css';
 import LoginIcon from '@mui/icons-material/Login';
+import IconButton from '@mui/material/IconButton';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 const Login = () => {
     
@@ -15,17 +22,30 @@ const Login = () => {
     const [emailDirty, setEmailDirty] = useState(false);
     const [passwordlDirty, setPasswordDirty] = useState(false);
     const [formValid, setFormvalid] = useState(false);
+    const [values, setValues] = useState({ showPassword: false })
     const dispatch = useDispatch();
+    
+    const handleClickShowPassword = () => {
+        setValues({
+        ...values,
+        showPassword: !values.showPassword,
+        });
+    };
 
-        useEffect(() => {
+    useEffect(() => {
         if ( emailError || passwordError) {
             setFormvalid(false)
         } else {
             setFormvalid(true) 
         }
-    }, [emailError, passwordError])
+        if (!email || !password) {
+            setFormvalid(false)
+        } else {
+            setFormvalid(true) 
+        }
+    }, [email, emailError, password, passwordError])
 
-        const handleBlur = (e) => {
+    const handleBlur = (e) => {
         switch (e.target.name) {
             case 'email':
                 setEmailDirty(true)
@@ -60,16 +80,16 @@ const Login = () => {
         };
     };
     
-const handleSubmit = e => {
-    e.preventDefault();
-    dispatch(authOperations.logIn({ email, password }));
-    setEmail('');
-    setPassword('');
+    const handleSubmit = e => {
+        e.preventDefault();
+        dispatch(authOperations.logIn({ email, password }));
+        setEmail('');
+        setPassword('');
     };   
+
     return(
         <form className={s.FormRegister} onSubmit={handleSubmit}>
             <span className={s.RegisterText}><LoginIcon />Login</span>
-            
             <p className={s.InputRegister}>
                 <TextField
                     className={s.InputEidth}
@@ -85,19 +105,32 @@ const handleSubmit = e => {
                 </p>
                 
             <p className={s.InputRegister}>
-                <TextField
+            <FormControl className={s.InputPosition} sx={{ m: 1, width: '25ch' }} variant="outlined">
+                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                    <OutlinedInput
                     className={s.InputEidth}
-                    label="Password"
-                    variant="outlined"
-                    type="password"
-                    name="password"
+                    type={values.showPassword ? 'text' : 'password'}
                     value={password}
+                    variant="outlined"
+                    name="password"
                     onChange={handlePassword}
                     onBlur={e => handleBlur(e)}
-            />
-                {(passwordError && passwordlDirty) && <div className={s.ErrorType}>{passwordError}</div>}
-                </p>
-                
+                    endAdornment={
+                <InputAdornment position="end">
+                    <IconButton
+                    label="Password"
+                    onClick={handleClickShowPassword}
+                    edge="end"
+                    >
+                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                </InputAdornment>
+                }
+                    label="Password"
+                    />
+                </FormControl>
+                {(passwordError && passwordlDirty) && <div className={s.ErrorType}>{passwordError}</div>}</p>
+
             <Button
                 disabled={!formValid}
                 className={s.ButtRegis}

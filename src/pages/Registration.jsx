@@ -6,6 +6,13 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Link } from "react-router-dom";
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import IconButton from '@mui/material/IconButton';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 const Registration = () => {
     const [name, setName] = useState('');
@@ -18,7 +25,15 @@ const Registration = () => {
     const [emailDirty, setEmailDirty] = useState(false);
     const [passwordlDirty, setPasswordDirty] = useState(false);
     const [formValid, setFormvalid] = useState(false);
+    const [values, setValues] = useState({ showPassword: false })
     const dispatch = useDispatch();
+
+    const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
 
     useEffect(() => {
         if (nameError || emailError || passwordError) {
@@ -26,17 +41,19 @@ const Registration = () => {
         } else {
             setFormvalid(true) 
         }
-    }, [emailError, nameError, passwordError])
+        if (!name || !email || !password) {
+            setFormvalid(false)
+        } else {
+            setFormvalid(true) 
+        }
+    }, [email, emailError, name, nameError, password, passwordError])
     
     const handleSubmit = e => {
-    e.preventDefault();
-    dispatch(authOperations.register({ name, email, password }));
-    setName('');
-    setEmail('');
-    setPassword('');
-    if (!name || !email || !password) {
-        alert('error')
-        };
+        e.preventDefault();
+        dispatch(authOperations.register({ name, email, password }));
+        setName('');
+        setEmail('');
+        setPassword('');
     }; 
 
     const handleBlur = (e) => {
@@ -89,7 +106,6 @@ const Registration = () => {
     return(
         <form className={s.FormRegister} onSubmit={handleSubmit}>
             <span className={s.RegisterText}><AppRegistrationIcon />Register</span>
-            
             <p className={s.InputRegister}>
                 <TextField
                     className={s.InputEidth}
@@ -100,11 +116,11 @@ const Registration = () => {
                     value={name}
                     onChange={handleName}
                     onBlur={e => handleBlur(e)}
-            />
+                />
                 {(nameError && nameDirty) && <div className={s.ErrorType}>{nameError}</div>}
                 </p>
             
-            <p className={s.InputRegister}>
+                <p className={s.InputRegister}>
                 <TextField
                     className={s.InputEidth}
                     label="Email"
@@ -114,31 +130,43 @@ const Registration = () => {
                     value={email}
                     onChange={e => handleEmail(e)}
                     onBlur={e => handleBlur(e)}
-            />
+                />
                 {(emailError && emailDirty) && <div className={s.ErrorType}>{emailError}</div>}
                 </p>
-
             
-            <p className={s.InputRegister}>
-                <TextField
+                <p className={s.InputRegister}>
+                <FormControl className={s.InputPosition} sx={{ m: 1, width: '25ch' }} variant="outlined">
+                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                <OutlinedInput
                     className={s.InputEidth}
-                    label="Password"
-                    variant="outlined"
-                    type="password"
-                    name="password"
+                    type={values.showPassword ? 'text' : 'password'}
                     value={password}
-                    onChange={e => handlePassword(e)}
+                    variant="outlined"
+                    name="password"
+                    onChange={handlePassword}
                     onBlur={e => handleBlur(e)}
-            />
-                {(passwordError && passwordlDirty) && <div className={s.ErrorType}>{passwordError}</div>}
-                </p>
+                    endAdornment={
+                <InputAdornment position="end">
+                    <IconButton
+                    label="Password"
+                    onClick={handleClickShowPassword}
+                    edge="end"
+                    >
+                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                </InputAdornment>
+                }
+                    label="Password"
+                    />
+                </FormControl>
+                {(passwordError && passwordlDirty) && <div className={s.ErrorType}>{passwordError}</div>}</p>
                 
-            <Button
-                disabled={!formValid}
-                className={s.ButtRegis}
-                type="submit"
-                variant="outlined"
-            >Register</Button>
+                <Button
+                    disabled={!formValid}
+                    className={s.ButtRegis}
+                    type="submit"
+                    variant="outlined"
+                >Register</Button>
 
             <p className={s.TextProject}>If you have an account, then go to it <Link className={s.BackLogin} to='/login'>SignIn</Link></p>
         </form>
