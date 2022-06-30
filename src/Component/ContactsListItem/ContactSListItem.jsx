@@ -16,6 +16,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
+
 const ContactListItem = ({ id, name, number }) => {
     const [editContact] = useEditPostContactMutation();
     const [deleteContact, { isLoading: isDeleting }] = useDeleteContactsMutation();
@@ -23,6 +24,15 @@ const ContactListItem = ({ id, name, number }) => {
     const [editName, setEditName] = useState(name);
     const [editPhone, setEditPhone] = useState(number);
     const [isModal, setIsModal] = useState(false);
+    const [formValid, setFormvalid] = useState(false);
+
+     useEffect(() => {
+        if (!editName || !editPhone) {
+            setFormvalid(false)
+        } else {
+            setFormvalid(true) 
+        }
+    }, [editName, editPhone])
 
     const handleModalClose = e => {
         if (e.keyCode === 27) {
@@ -83,7 +93,6 @@ const ContactListItem = ({ id, name, number }) => {
                                     value={editName || ''}
                                     onChange={(e) => setEditName(e.target.value)}
                                 />
-                            
                                 <input
                                     className={styles.InputModal}
                                     type="number"
@@ -91,8 +100,9 @@ const ContactListItem = ({ id, name, number }) => {
                                     onChange={(e) => setEditPhone(e.target.value)}
                                 />
                                 </div>
-                                <button
-                                    className={styles.ButtonDone}
+                            <button
+                                disabled={!formValid}
+                                className={styles.ButtonDone}
                                 type='submit'>
                                 <DoneIcon className={styles.IconDone} /></button>
                                 <button
