@@ -93,7 +93,8 @@ const ContactListItem = ({ id, name, number }) => {
                                 </div>
                                 <button
                                     className={styles.ButtonDone}
-                                    type='submit'><DoneIcon className={styles.IconDone} /></button>
+                                type='submit'>
+                                <DoneIcon className={styles.IconDone} /></button>
                                 <button
                                     type='button'
                                     onClick={handleExitContact}

@@ -29,6 +29,12 @@
     box-shadow: 0 0 10px 5px rgb(221 221 221);
 }
 
+@media screen and (max-width: 768px){
+.Forms{
+    margin: 100px 20px 100px 20px;
+}
+}
+
 
 .PhoneBook{
     text-align: center;
@@ -54,7 +60,7 @@
 
 @media screen and (max-width: 768px){
 .FormRegister{
-    margin: 130px 20px 130px 20px;
+    margin: 100px 20px 0 20px;
 }
 }
 
