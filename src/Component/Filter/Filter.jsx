@@ -13,6 +13,7 @@ const Filter = () => {
         <label className={styles.LabelForm}>
             <span className={styles.NamesForm}>Find contacts by name</span>
             <Input className={styles.InputName}
+                color="success"
                 type="text"
                 name="filter"
                 placeholder='filter contacts'

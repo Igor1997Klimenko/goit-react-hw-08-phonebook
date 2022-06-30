@@ -74,6 +74,7 @@ const ContactListItem = ({ id, name, number }) => {
             await editContact({ id: id, name: editName, number: editPhone })
         }
     }
+    
 
     return (
         <>
@@ -104,7 +105,8 @@ const ContactListItem = ({ id, name, number }) => {
                                 disabled={!formValid}
                                 className={styles.ButtonDone}
                                 type='submit'>
-                                <DoneIcon className={styles.IconDone} /></button>
+                                <DoneIcon className={styles.IconDone} />
+                            </button>
                                 <button
                                     type='button'
                                     onClick={handleExitContact}

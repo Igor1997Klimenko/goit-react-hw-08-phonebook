@@ -15,6 +15,7 @@ const ContactForm = () => {
     const [addContact, { isLoading }] = useAddContactMutation();
     const [formValid, setFormvalid] = useState(false); 
 
+
         useEffect(() => {
             if ( name === '' || number === '') {
                 setFormvalid(true)
@@ -39,8 +40,9 @@ const handleInputChange = e => {
         }
     }
     
-const handleSubmit = e => {
+    const handleSubmit = e => {
     e.preventDefault();
+   
     if(contactExits()){
         toast.success(`${name} is already in contacts`, {
             style: {
@@ -67,9 +69,8 @@ const handleSubmit = e => {
     
 
     return(
-        <form className={styles.forma} onSubmit={handleSubmit}>
-            <div className={styles.blockform}>
-                
+        <form noValidate  className={styles.forma} onSubmit={handleSubmit}>
+            <div className={styles.blockform}> 
                 <TextField
                     className={styles.InputForm}
                     id="outlined-basic"
@@ -81,9 +82,8 @@ const handleSubmit = e => {
                     title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
                     required
                     value={name}
-                    onChange={handleInputChange}              
+                    onChange={handleInputChange}   
                 />
-
                 <TextField
                     className={styles.InputForm}
                     id="outlined-basic"
@@ -108,6 +108,5 @@ const handleSubmit = e => {
         </form>
     );
   }
-
 
 export default memo(ContactForm);
