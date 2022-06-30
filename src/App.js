@@ -9,6 +9,8 @@ import authSelectors from 'redux/auth/auth-selector';
 import { Plane } from 'react-loader-spinner'
 import Header from 'Component/Header/Header';
 import Footer from 'Component/Footer/Footer';
+import Stack from '@mui/material/Stack';
+import LinearProgress from '@mui/material/LinearProgress';
 
 const HomePages = lazy(() => import('./pages/Home'));
 const RegistrationPages = lazy(() => import('./pages/Registration'));
@@ -56,7 +58,11 @@ const App = () => {
         <Footer/>
         </div>
     ) : (
-      <h1>Идёт загрузка...</h1>)
+        <Stack sx={{ width: '100%', color: 'grey.500' }} spacing={2}>
+          <LinearProgress color="secondary" />
+          <LinearProgress color="success" />
+          <LinearProgress color="inherit" />
+        </Stack>)
   );
 };
 
