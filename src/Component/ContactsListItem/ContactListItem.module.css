@@ -47,23 +47,24 @@
 }
 
 .ButtonDone{
-background: transparent;
+    background: transparent;
     border: 1px solid #04d504;
     border-radius: 50%;
     cursor: pointer;
-    height: min-content;
+    height: auto;
+    padding: 3px 5px;
     transition: 0.5s;
     margin-left: 5px;
 }
 
 .ButtonDone:hover{
     background: transparent;
-    background: aquamarine;
+    background: #115840;
 }
 
 .IconDone{
     fill: #04d504;
-    height: 30px;
+    height: auto;
 }
 
 .DefaultInput{
