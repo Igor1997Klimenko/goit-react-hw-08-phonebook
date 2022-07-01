@@ -41,12 +41,8 @@ const Registration = () => {
         } else {
             setFormvalid(true) 
         }
-        if (!name || !email || !password) {
-            setFormvalid(false)
-        } else {
-            setFormvalid(true) 
-        }
-    }, [email, emailError, name, nameError, password, passwordError])
+
+    }, [ emailError, nameError, passwordError])
     
     const handleSubmit = e => {
         e.preventDefault();
@@ -72,36 +68,44 @@ const Registration = () => {
         };
     };
 
-    const handleName = e => {
-        setName(e.target.value)
+    const handleInputRegister = (e) => {
+        const { name, value } = e.target;
+        switch (name) {
+            case 'name':
+            setName(value)
         if (e.target.value.length < 3) {
             setNameError('invalid name')
         } else {
             setNameError('')
         };
-    };
+        break;
 
-    const handleEmail = (e) => {
-        setEmail(e.target.value)
-        const re = /^[a-z][a-zA-Z0-9_.]*(\.[a-zA-Z][a-zA-Z0-9_.]*)?@[a-z][a-zA-Z-0-9]*\.[a-z]+(\.[a-z]+)?$/;
-        if (!re.test(String(e.target.value).toLowerCase())) {
-            setEmailError('this email is incorrect')
-        } else {
-            setEmailError('')
-        };
-    };
-
-    const handlePassword = (e) => {
-        setPassword(e.target.value)
-        if (e.target.value.length < 7 || e.target.value.length > 12) {
-            setPasswordError('password must be longer than 7 and less than 12')
-            if (!e.target.value) {
-                setPasswordError('Password cannot be empty')
+            case 'email':
+            setEmail(value)
+            const re = /^[a-z][a-zA-Z0-9_.]*(\.[a-zA-Z][a-zA-Z0-9_.]*)?@[a-z][a-zA-Z-0-9]*\.[a-z]+(\.[a-z]+)?$/;
+            if (!re.test(String(e.target.value).toLowerCase())) {
+                setEmailError('this email is incorrect')
+            } else {
+                setEmailError('')
             };
-        } else {
-            setPasswordError('')
-        };
-    };
+         break;
+            
+            
+        case 'password':
+            setPassword(value)
+            if (e.target.value.length < 7 || e.target.value.length > 12) {
+                setPasswordError('password must be longer than 7 and less than 12')
+                if (!e.target.value) {
+                        setPasswordError('Password cannot be empty')
+                };
+            } else {
+                setPasswordError('')
+            };
+            break;
+            default:
+                return;
+        }
+    }
    
     return(
         <form className={s.FormRegister} onSubmit={handleSubmit}>
@@ -114,7 +118,7 @@ const Registration = () => {
                     type="text"
                     name="name"
                     value={name}
-                    onChange={handleName}
+                    onChange={handleInputRegister}
                     onBlur={e => handleBlur(e)}
                 />
                 {(nameError && nameDirty) && <div className={s.ErrorType}>{nameError}</div>}
@@ -128,7 +132,7 @@ const Registration = () => {
                     type="text"
                     name="email"
                     value={email}
-                    onChange={e => handleEmail(e)}
+                    onChange={handleInputRegister}
                     onBlur={e => handleBlur(e)}
                 />
                 {(emailError && emailDirty) && <div className={s.ErrorType}>{emailError}</div>}
@@ -143,7 +147,7 @@ const Registration = () => {
                     value={password}
                     variant="outlined"
                     name="password"
-                    onChange={handlePassword}
+                    onChange={handleInputRegister}
                     onBlur={e => handleBlur(e)}
                     endAdornment={
                 <InputAdornment position="end">

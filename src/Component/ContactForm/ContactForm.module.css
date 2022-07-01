@@ -33,3 +33,12 @@
 .InputForm{
     margin-bottom: 20px;
 }
+
+
+.ErrorName{
+    color: red;
+    text-shadow: 1px 1px 1px white, 0px 1px 1px red;
+    font-size: 14px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+}

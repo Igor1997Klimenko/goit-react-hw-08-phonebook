@@ -11,28 +11,60 @@ import Button from '@mui/material/Button';
 const ContactForm = () => {
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
+    const [nameDirty, setNameDirty] = useState(false);
+    const [numberDirty, setNumberDirty] = useState(false);
+    const [nameError, setNameError] = useState('fill in the fields');
+    const [numberError, setNumberError] = useState('fill in the fields');
     const { data: contacts } = useGetContactsQuery();
     const [addContact, { isLoading }] = useAddContactMutation();
     const [formValid, setFormvalid] = useState(false); 
 
+    useEffect(() => {
+        if (nameError || numberError) {
+            setFormvalid(false)
+        } else {
+            setFormvalid(true)
+        }
+    },[nameError, numberError])
 
-        useEffect(() => {
-            if ( name === '' || number === '') {
-                setFormvalid(true)
-            } else {
-                setFormvalid(false) 
-            }
-        }, [name, number])
+    const handleBlur = (e) => {
+        switch (e.target.name) {
+            case 'name':
+                setNameDirty(true)
+                break;
+            case 'number':
+                setNumberDirty(true)
+                break;
+            default:
+                return;
+        };
+    };
   
-const handleInputChange = e => {
+    const handleInputChange = e => {
         const { name, value } = e.target;
         switch (name) {
             case 'name':
                 setName(value)
+                if (e.target.value.length < 3) {
+                    setNameError('invalid name')
+                if (!value) {
+                    setNameError('fill in the fields')
+                    }
+                } else {
+                    setNameError('')
+            };
                 break;
 
             case 'number':
                 setNumber(value)
+                if (value.length < 6 || value.length > 12) {
+                    setNumberError('The number must be longer than 6 and less than 12')
+                if (!value) {
+                    setNumberError('fill in the fields')
+                    }
+                } else {
+                    setNumberError('')
+                }
                 break;
 
             default:
@@ -65,12 +97,12 @@ const handleInputChange = e => {
     
     const contactExits = () =>
         contacts.find(contact =>
-            contact.name.toUpperCase() === name.toUpperCase() || contact.number === number);  
+        contact.name.toUpperCase() === name.toUpperCase() || contact.number === number);  
     
 
     return(
         <form noValidate  className={styles.forma} onSubmit={handleSubmit}>
-            <div className={styles.blockform}> 
+            <div className={styles.blockform}>
                 <TextField
                     className={styles.InputForm}
                     id="outlined-basic"
@@ -83,7 +115,9 @@ const handleInputChange = e => {
                     required
                     value={name}
                     onChange={handleInputChange}   
+                    onBlur={e => handleBlur(e)}
                 />
+                {(nameError && nameDirty) && <div className={styles.ErrorName}>{nameError}</div>}
                 <TextField
                     className={styles.InputForm}
                     id="outlined-basic"
@@ -96,10 +130,12 @@ const handleInputChange = e => {
                     required
                     value={number}
                     onChange={handleInputChange}
-                    />
+                    onBlur={e => handleBlur(e)}
+                />
+                {(numberError && numberDirty) && <div className={styles.ErrorName}>{numberError}</div>}
             </div>
             <Button
-                disabled={formValid}
+                disabled={!formValid}
                 type="submit"
                 variant="outlined">
                 {isLoading ? <BallTriangle color="#00BFFF" height={20} width={20} /> : 'Add contact'}
