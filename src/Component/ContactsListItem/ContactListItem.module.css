@@ -6,8 +6,9 @@
 }
 
 .NumberContacts{
-    padding-right: 10px;
-    color: #076e5b;
+    display: flex;
+    align-items: center;
+    color: #40317e;
     font-family: sans-serif;
     padding: 5px 0;
 }
@@ -38,7 +39,7 @@
 }
 
 .EditIcon{
-    fill: #13a711;
+    fill: #9c27b0;
     transition: 0.6s;
 }
 
@@ -58,8 +59,7 @@
 }
 
 .ButtonDone:hover{
-    background: transparent;
-    background: #115840;
+    background: #00ffa973;
 }
 
 .IconDone{
@@ -75,8 +75,9 @@
 .DroupContent{
 display: flex;
     align-items: center;
-    background: #25488775;
+    background: #c6faff;
     position: absolute;
+    width: fit-content;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1);
@@ -102,7 +103,6 @@ display: flex;
 }
 
 .InputModal{
-    padding: 10px;
     border: none;
     background: #e9fcff;
     color: #001fb5;
@@ -111,7 +111,7 @@ display: flex;
 }
 
 .InputModal:first-child{
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .editModal{

@@ -8,11 +8,9 @@ import s from './Pages.module.css'
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 
 const ContactsBook = () => {
-    const dispatch = useDispatch();
     
-    useEffect(() => {
-        dispatch(contactsOperations.fetchContacts())
-    }, [dispatch]);
+    const dispatch = useDispatch();
+    useEffect(() => { dispatch(contactsOperations.fetchContacts()) }, [dispatch]);
 
     return (
         <div className={s.Forms}>

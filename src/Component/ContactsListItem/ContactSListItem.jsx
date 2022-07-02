@@ -15,6 +15,8 @@ import toast from 'react-hot-toast';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import TextField from '@mui/material/TextField';
+import ContactsIcon from '@mui/icons-material/Contacts';
 
 
 const ContactListItem = ({ id, name, number }) => {
@@ -73,13 +75,12 @@ const ContactListItem = ({ id, name, number }) => {
         if (editName && editPhone) {
             await editContact({ id: id, name: editName, number: editPhone })
         }
-    }
-    
+    } 
 
     return (
         <>
             <span className={styles.NumberContacts}>
-                {name}: {number}
+                <ContactsIcon/>{name}: {number}
             </span>
 
             {contactIndex ? (
@@ -88,18 +89,27 @@ const ContactListItem = ({ id, name, number }) => {
                     <form onSubmit={handleSubmitSaveContact}>
                         <div  className={styles.DroupContent}>
                             <div className={styles.DefaultInput}>
-                                <input
-                                    className={styles.InputModal}
-                                    type="text"
-                                    value={editName || ''}
-                                    onChange={(e) => setEditName(e.target.value)}
-                                />
-                                <input
-                                    className={styles.InputModal}
-                                    type="number"
-                                    value={editPhone || ''}
-                                    onChange={(e) => setEditPhone(e.target.value)}
-                                />
+                            <TextField
+                            className={styles.InputModal}
+                            label="Name"
+                            id="outlined-size-small"
+                            defaultValue="Small"
+                            size="small"
+                            type="text"
+                            value={editName || ''}
+                            onChange={(e) => setEditName(e.target.value)}
+                            />
+
+                            <TextField
+                            className={styles.InputModal}
+                            label="Number"
+                            id="outlined-size-small"
+                            defaultValue="Small"
+                            size="small"
+                            type="number"
+                            value={editPhone || ''}
+                            onChange={(e) => setEditPhone(e.target.value)}
+                            />
                                 </div>
                             <button
                                 disabled={!formValid}

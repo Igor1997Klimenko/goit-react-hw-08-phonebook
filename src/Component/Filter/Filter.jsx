@@ -1,5 +1,5 @@
 import styles from './Filter.module.css';
-import { contactsFilter } from '../../redux/toogleContacts';
+import { contactsFilter } from '../../redux/contacts/toogleContacts';
 import { useDispatch } from 'react-redux';
 import Input from '@mui/material/Input';
 

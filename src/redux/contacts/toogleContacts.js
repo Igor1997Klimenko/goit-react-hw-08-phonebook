@@ -8,10 +8,6 @@ export const toogleContacts = createSlice({
     contactsFilter: (state, { payload }) => {
       state.filter = payload;      
     }, 
-    
-    editTodo: (state, { payload }) => {
-      
-    }
   },
 });
 
