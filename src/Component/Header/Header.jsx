@@ -34,7 +34,8 @@ const Header = () => {
                 </Typography>
 
                 <div className={s.Menu} >
-                <Button
+                    <Button
+                    className={s.ButtMenuHeader}
                     id="demo-positioned-button"
                     aria-controls={open ? 'demo-positioned-menu' : undefined}
                     aria-haspopup="true"

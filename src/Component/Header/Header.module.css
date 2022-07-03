@@ -26,3 +26,7 @@
 .stylerMenu{
     margin-top: 30px;
 }
+
+.ButtMenuHeader{
+    justify-content: end !important;
+}
