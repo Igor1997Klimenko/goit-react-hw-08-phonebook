@@ -10,9 +10,9 @@ const UserMenu = ({closeMenu}) => {
     const dispatch = useDispatch();
     const name = useSelector(authSelectors.getUsername);
 
-   const handleExitsLogOut = async () => {
+   const handleExitsLogOut = () => {
        dispatch(authOperations.logOut())
-       await closeMenu()
+       closeMenu()
     }
     return (
         <div className={s.Logout}>

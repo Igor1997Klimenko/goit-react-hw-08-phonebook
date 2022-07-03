@@ -60,7 +60,10 @@ const Header = () => {
                     }}
                     >
                     <Typography className={s.typoGraf}>
-                    {isLoggedIn ? (<UserMenu closeMenu={handleClose} />) : (<AuthNav closeMenu={handleClose} />)}
+                            {isLoggedIn ? (
+                                <UserMenu closeMenu={handleClose} />
+                            ) : (
+                                <AuthNav closeMenu={handleClose} />)}
                     </Typography>
                 </Menu>
                 </div>
