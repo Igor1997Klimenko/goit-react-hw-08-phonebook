@@ -18,7 +18,6 @@ const UserMenu = ({closeMenu}) => {
         <div className={s.Logout}>
             <div className={s.User}><Avatar
                 className={s.Avatar}
-                src="/broken-image.jpg"
                 sx={{ width: 26, height: 26, background: '#44b1ff', }}
             />
             <span className={s.LogoutWel}> {name}</span>
