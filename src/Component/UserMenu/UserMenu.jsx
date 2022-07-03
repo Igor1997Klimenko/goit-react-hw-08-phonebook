@@ -12,7 +12,7 @@ const UserMenu = ({closeMenu}) => {
 
    const handleExitsLogOut = () => {
        dispatch(authOperations.logOut())
-       closeMenu()
+       closeMenu();
     }
     return (
         <div className={s.Logout}>
@@ -28,7 +28,7 @@ const UserMenu = ({closeMenu}) => {
                 className={s.ButtonOut}
                 type='button'
                 variant="contained"
-                onClick={handleExitsLogOut}
+                onClick={() => handleExitsLogOut()}
             >
                 <LogoutIcon/>GoOut
             </Button>
