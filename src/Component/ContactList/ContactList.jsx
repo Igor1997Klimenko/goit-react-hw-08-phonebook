@@ -5,7 +5,8 @@ import { useGetContactsQuery } from '../../redux/contacts/contacts-api';
 import { useSelector } from 'react-redux';
 
 const ContactList = () => {
-    const { data } = useGetContactsQuery();
+    const { data } = useGetContactsQuery( { count: 5 },
+    { refetchOnMountOrArgChange: true });
     const filterValue = useSelector((state) => state.contacts.filter);
 
     return(

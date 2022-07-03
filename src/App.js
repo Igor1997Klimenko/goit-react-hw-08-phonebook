@@ -16,6 +16,7 @@ const HomePages = lazy(() => import('./pages/Home'));
 const RegistrationPages = lazy(() => import('./pages/Registration'));
 const LoginPages = lazy(() => import('./pages/Login'));
 const ContactsPages = lazy(() => import('./pages/ContactsBooks'));
+const ErrorPages = lazy(() => import('./pages/PageError')); 
 
 const App = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const App = () => {
 
   return (
     !isFetchingCurrentUser ? (
-      <div>
+      <>
       <Header/>
       <Container>  
           <Suspense fallback={<span style={{display: 'flex', position: 'fixed',top: '10%'}}><Plane ariaLabel="loading-indicator" /></span>}>
@@ -47,6 +48,12 @@ const App = () => {
               <PublicRoute restricted>
                 <LoginPages />
               </PublicRoute>} />
+              
+              <Route path='*' element={
+                <PublicRoute>
+                  <ErrorPages/>
+                </PublicRoute>
+              }/>
 
             <Route path='contacts' element={
               <PrivateRoute>
@@ -56,7 +63,7 @@ const App = () => {
           </Suspense>
         </Container>
         <Footer/>
-        </div>
+        </>
     ) : (
         <Stack sx={{ width: '100%', color: 'grey.500' }} spacing={2}>
           <LinearProgress color="secondary" />

@@ -106,7 +106,7 @@ const Login = () => {
                 </p>
                 
             <p className={s.InputRegister}>
-            <FormControl className={s.InputPosition} sx={{ m: 1, width: '25ch' }} variant="outlined">
+            <FormControl className={s.InputPosition} variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                     <OutlinedInput
                     className={s.InputEidth}

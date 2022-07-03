@@ -69,7 +69,7 @@
 }
 
 .InputPosition{
-    margin: 0;
+    margin: 0 0 10px 0 !important;
     width: 100%;
 }
 
@@ -108,4 +108,15 @@
     color: red;
     text-shadow: 1px 1px 1px white, 0px 1px 1px red;
     font-size: 14px;
+}
+
+.PageError{
+    position: absolute;
+    font-family: sans-serif;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
 }

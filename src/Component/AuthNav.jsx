@@ -6,8 +6,8 @@ const AuthNav = ({closeMenu}) => {
     return (
         <div className={s.NavAutoriz}>
             <div className={s.AutorizProj}>
-                <NavLink className={s.LinkHome} onClick={closeMenu} style={isActive} to='register'>Регистрация</NavLink>
-                <NavLink className={s.LinkHome} onClick={closeMenu} style={isActive} to='login'>Логин</NavLink>
+                <NavLink className={s.LinkHome} onClick={closeMenu} style={isActive} to='register'>Register</NavLink>
+                <NavLink className={s.LinkHome} onClick={closeMenu} style={isActive} to='login'>Login</NavLink>
             </div>
         </div>
     )
