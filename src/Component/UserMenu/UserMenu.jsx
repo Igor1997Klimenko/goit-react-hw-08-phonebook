@@ -28,7 +28,7 @@ const UserMenu = ({closeMenu}) => {
                 className={s.ButtonOut}
                 type='button'
                 variant="contained"
-                onClick={() => handleExitsLogOut()}
+                onClick={handleExitsLogOut}
             >
                 <LogoutIcon/>GoOut
             </Button>
